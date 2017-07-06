@@ -25,7 +25,7 @@ class Stopwatch {
 	start() {//Uruchomienie stopera.
 	    if (!this.running) {//Sprawdzenie czy timer już nie chodzi- flaga running.
 	        this.running = true; //Jeśli stoper był zatrzymany należy go uruchomić ustawiając flagę running na true.
-	        this.watch = setInterval(() => this.step(), 100);//Interwał odpala co 10 ms metodę step ,która jest kolejnym tikiem stopera.
+	        this.watch = setInterval(() => this.step(), 100).bind;//Interwał odpala co 10 ms metodę step ,która jest kolejnym tikiem stopera.
     	}
 	}
 
@@ -65,6 +65,7 @@ const stopwatch = new Stopwatch(
 document.querySelector('.stopwatch'));
 
 var startButton = document.getElementById('start');
-startButton.addEventListener('click', stopwatch.start);
+startButton.addEventListener('click',()=> stopwatch.start());
 var stopButton = document.getElementById('stop');
-stopButton.addEventListener('click', stopwatch.stop);
+stopButton.addEventListener('click',()=> stopwatch.stop);
+stopButton.addEventListener('click', () => stopwatch.stop());
